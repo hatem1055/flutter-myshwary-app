@@ -15,9 +15,7 @@ class ItemDetails extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: itemProvider,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: AllSubItems()
-        ),
+        body: SingleChildScrollView(child: AllSubItems()),
         appBar: AppBar(
             iconTheme: IconThemeData(
               color: colors.colorPallet.textColor, //change your color here
@@ -28,7 +26,13 @@ class ItemDetails extends StatelessWidget {
             ),
             backgroundColor: colors.colorPallet.appBgColor,
             bottom: PreferredSize(
-                child: ItemWidget(),
+                child: Hero(
+                  tag: {
+                    'id':itemProvider.id
+                  },
+                  transitionOnUserGestures: true,
+                  child: ItemWidget()
+                ),
                 preferredSize: const Size.fromHeight(40.0))),
       ),
     );
